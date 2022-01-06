@@ -93,5 +93,5 @@ if(BREEZE_HAVE_X11)
 endif()
 
 
-install(TARGETS breezedecoration DESTINATION ${KDE_INSTALL_PLUGINDIR}/org.kde.kdecoration2)
-install(FILES config/breezedecorationconfig.desktop DESTINATION  ${KDE_INSTALL_KSERVICES5DIR})
+install(TARGETS breezeSquaredecoration DESTINATION ${KDE_INSTALL_PLUGINDIR}/org.kde.kdecoration2)
+install(FILES config/breezeSquaredecorationconfig.desktop DESTINATION  ${KDE_INSTALL_KSERVICES5DIR})
