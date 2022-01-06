@@ -1,14 +1,14 @@
 [Desktop Entry]
-Exec=kcmshell5 breezedecorationconfig
+Exec=kcmshell5 breezeSquaredecorationconfig
 Icon=preferences-system-windows
 Type=Service
 X-KDE-ServiceTypes=KCModule
 
-X-KDE-Library=org.kde.kdecoration2/breezedecoration
+X-KDE-Library=org.kde.kdecoration2/breezeSquaredecoration
 X-KDE-ParentApp=kcontrol
 X-KDE-Weight=60
 
-Name=Breeze Window Decoration
+Name=Breeze Square Window Decoration
 Name[ar]=زخرفة نوافذ نسيم
 Name[az]=Breeze Pəncərə Tərtibatı
 Name[ca]=Decoració de les finestres Brisa
@@ -100,7 +100,7 @@ Comment[uk]=Зміна вигляду декорацій вікон
 Comment[x-test]=xxModify the appearance of window decorationsxx
 Comment[zh_CN]=修改窗口装饰外观
 Comment[zh_TW]=變更視窗裝飾外觀
-X-KDE-Keywords=breeze,decoration
+X-KDE-Keywords=breeze,decoration,breezeSquare
 X-KDE-Keywords[ar]=نسيم,زخرفة
 X-KDE-Keywords[az]=breeze,dekorasiya
 X-KDE-Keywords[ca]=breeze,brisa,decoració

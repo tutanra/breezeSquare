@@ -64,12 +64,12 @@ set(breezedecoration_config_PART_FORMS
 ki18n_wrap_ui(breezedecoration_config_PART_FORMS_HEADERS ${breezedecoration_config_PART_FORMS})
 
 ### build library
-add_library(breezedecoration MODULE
+add_library(breezeSquaredecoration MODULE
     ${breezedecoration_SRCS}
     ${breezedecoration_config_SRCS}
     ${breezedecoration_config_PART_FORMS_HEADERS})
 
-target_link_libraries(breezedecoration
+target_link_libraries(breezeSquaredecoration
     PUBLIC
         Qt::Core
         Qt::Gui
@@ -86,12 +86,11 @@ target_link_libraries(breezedecoration
         KF5::WindowSystem)
 
 if(BREEZE_HAVE_X11)
-  target_link_libraries(breezedecoration
+  target_link_libraries(breezeSquaredecoration
     PUBLIC
       Qt::X11Extras
       XCB::XCB)
 endif()
-
 
 install(TARGETS breezeSquaredecoration DESTINATION ${KDE_INSTALL_PLUGINDIR}/org.kde.kdecoration2)
 install(FILES config/breezeSquaredecorationconfig.desktop DESTINATION  ${KDE_INSTALL_KSERVICES5DIR})
