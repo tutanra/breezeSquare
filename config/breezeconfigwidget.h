@@ -11,8 +11,8 @@
 
 #include "ui_breezeconfigurationui.h"
 #include "breezeexceptionlistwidget.h"
-#include "breezesettings.h"
-#include "breeze.h"
+#include "breezeSquaresettings.h"
+#include "breezeSquare.h"
 
 #include <KCModule>
 #include <KSharedConfig>
@@ -20,7 +20,7 @@
 #include <QWidget>
 #include <QSharedPointer>
 
-namespace Breeze
+namespace BreezeSquare
 {
 
     //_____________________________________________

@@ -15,7 +15,7 @@
 #include <QX11Info>
 #endif
 
-namespace Breeze
+namespace BreezeSquare
 {
 
     //___________________________________________

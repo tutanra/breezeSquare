@@ -12,7 +12,7 @@
 
 #include <QAbstractItemModel>
 
-namespace Breeze
+namespace BreezeSquare
 {
 
     //* Job model. Stores job information for display in lists

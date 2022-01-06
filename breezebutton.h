@@ -15,7 +15,7 @@
 
 class QVariantAnimation;
 
-namespace Breeze
+namespace BreezeSquare
 {
 
     class Button : public KDecoration2::DecorationButton

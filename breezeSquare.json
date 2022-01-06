@@ -1,0 +1,16 @@
+{
+    "KPlugin": {
+        "Description": "Window decoration using the Breeze visual style for the Plasma Desktop",
+        "EnabledByDefault": true,
+        "Id": "org.kde.breezeSquare",
+        "Name": "Breeze Square",
+        "ServiceTypes": [
+            "org.kde.kdecoration2"
+        ]
+    },
+    "org.kde.kdecoration2": {
+        "blur": false,
+        "kcmodule": true,
+        "recommendedBorderSize": "None"
+    }
+}

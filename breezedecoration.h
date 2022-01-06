@@ -8,8 +8,8 @@
  * SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
  */
 
-#include "breeze.h"
-#include "breezesettings.h"
+#include "breezeSquare.h"
+#include "breezeSquaresettings.h"
 
 #include <KDecoration2/Decoration>
 #include <KDecoration2/DecoratedClient>
@@ -27,7 +27,7 @@ namespace KDecoration2
     class DecorationButtonGroup;
 }
 
-namespace Breeze
+namespace BreezeSquare
 {
     class SizeGrip;
     class Decoration : public KDecoration2::Decoration

@@ -14,7 +14,7 @@
 // SPDX-License-Identifier: MIT
 //////////////////////////////////////////////////////////////////////////////
 
-#include "breezesettings.h"
+#include "breezeSquaresettings.h"
 #include "ui_breezedetectwidget.h"
 
 #include <QByteArray>
@@ -25,7 +25,7 @@
 
 #include <kwindowsystem.h>
 
-namespace Breeze
+namespace BreezeSquare
 {
 
     class DetectDialog : public QDialog

@@ -10,10 +10,10 @@
 //////////////////////////////////////////////////////////////////////////////
 
 #include "breezelistmodel.h"
-#include "breezesettings.h"
-#include "breeze.h"
+#include "breezeSquaresettings.h"
+#include "breezeSquare.h"
 
-namespace Breeze
+namespace BreezeSquare
 {
 
     //* qlistview for object counters

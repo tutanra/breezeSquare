@@ -39,10 +39,10 @@
 
 K_PLUGIN_FACTORY_WITH_JSON(
     BreezeDecoFactory,
-    "breeze.json",
-    registerPlugin<Breeze::Decoration>();
-    registerPlugin<Breeze::Button>();
-    registerPlugin<Breeze::ConfigWidget>();
+    "breezeSquare.json",
+    registerPlugin<BreezeSquare::Decoration>();
+    registerPlugin<BreezeSquare::Button>();
+    registerPlugin<BreezeSquare::ConfigWidget>();
 )
 
 namespace
@@ -111,15 +111,15 @@ namespace
     inline CompositeShadowParams lookupShadowParams(int size)
     {
         switch (size) {
-        case Breeze::InternalSettings::ShadowNone:
+        case BreezeSquare::InternalSettings::ShadowNone:
             return s_shadowParams[0];
-        case Breeze::InternalSettings::ShadowSmall:
+        case BreezeSquare::InternalSettings::ShadowSmall:
             return s_shadowParams[1];
-        case Breeze::InternalSettings::ShadowMedium:
+        case BreezeSquare::InternalSettings::ShadowMedium:
             return s_shadowParams[2];
-        case Breeze::InternalSettings::ShadowLarge:
+        case BreezeSquare::InternalSettings::ShadowLarge:
             return s_shadowParams[3];
-        case Breeze::InternalSettings::ShadowVeryLarge:
+        case BreezeSquare::InternalSettings::ShadowVeryLarge:
             return s_shadowParams[4];
         default:
             // Fallback to the Large size.
@@ -128,7 +128,7 @@ namespace
     }
 }
 
-namespace Breeze
+namespace BreezeSquare
 {
 
     using KDecoration2::ColorRole;

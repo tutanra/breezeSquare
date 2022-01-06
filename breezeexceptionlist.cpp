@@ -11,7 +11,7 @@
 #include "breezeexceptionlist.h"
 
 
-namespace Breeze
+namespace BreezeSquare
 {
 
     //______________________________________________________________

@@ -14,7 +14,7 @@
 #include <QVariantAnimation>
 #include <QPainterPath>
 
-namespace Breeze
+namespace BreezeSquare
 {
 
     using KDecoration2::ColorRole;
@@ -73,27 +73,27 @@ namespace Breeze
 
                 case DecorationButtonType::Close:
                 b->setVisible( c->isCloseable() );
-                QObject::connect(c.data(), &KDecoration2::DecoratedClient::closeableChanged, b, &Breeze::Button::setVisible );
+                QObject::connect(c.data(), &KDecoration2::DecoratedClient::closeableChanged, b, &BreezeSquare::Button::setVisible );
                 break;
 
                 case DecorationButtonType::Maximize:
                 b->setVisible( c->isMaximizeable() );
-                QObject::connect(c.data(), &KDecoration2::DecoratedClient::maximizeableChanged, b, &Breeze::Button::setVisible );
+                QObject::connect(c.data(), &KDecoration2::DecoratedClient::maximizeableChanged, b, &BreezeSquare::Button::setVisible );
                 break;
 
                 case DecorationButtonType::Minimize:
                 b->setVisible( c->isMinimizeable() );
-                QObject::connect(c.data(), &KDecoration2::DecoratedClient::minimizeableChanged, b, &Breeze::Button::setVisible );
+                QObject::connect(c.data(), &KDecoration2::DecoratedClient::minimizeableChanged, b, &BreezeSquare::Button::setVisible );
                 break;
 
                 case DecorationButtonType::ContextHelp:
                 b->setVisible( c->providesContextHelp() );
-                QObject::connect(c.data(), &KDecoration2::DecoratedClient::providesContextHelpChanged, b, &Breeze::Button::setVisible );
+                QObject::connect(c.data(), &KDecoration2::DecoratedClient::providesContextHelpChanged, b, &BreezeSquare::Button::setVisible );
                 break;
 
                 case DecorationButtonType::Shade:
                 b->setVisible( c->isShadeable() );
-                QObject::connect(c.data(), &KDecoration2::DecoratedClient::shadeableChanged, b, &Breeze::Button::setVisible );
+                QObject::connect(c.data(), &KDecoration2::DecoratedClient::shadeableChanged, b, &BreezeSquare::Button::setVisible );
                 break;
 
                 case DecorationButtonType::Menu:

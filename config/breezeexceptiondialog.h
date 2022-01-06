@@ -10,12 +10,12 @@
 //////////////////////////////////////////////////////////////////////////////
 
 #include "ui_breezeexceptiondialog.h"
-#include "breeze.h"
+#include "breezeSquare.h"
 
 #include <QCheckBox>
 #include <QMap>
 
-namespace Breeze
+namespace BreezeSquare
 {
 
     class DetectDialog;

@@ -39,9 +39,10 @@ set(breezedecoration_SRCS
     breezedecoration.cpp
     breezeexceptionlist.cpp
     breezesettingsprovider.cpp
-    breezesizegrip.cpp)
+    breezesizegrip.cpp
+    breezeboxshadowrenderer.cpp)
 
-kconfig_add_kcfg_files(breezedecoration_SRCS breezesettings.kcfgc)
+kconfig_add_kcfg_files(breezedecoration_SRCS breezeSquaresettings.kcfgc)
 
 ### config classes
 ### they are kept separately because they might move in a separate library in the future

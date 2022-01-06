@@ -18,7 +18,7 @@
 #include <QRegularExpression>
 
 //__________________________________________________________
-namespace Breeze
+namespace BreezeSquare
 {
 
     //__________________________________________________________

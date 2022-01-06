@@ -13,7 +13,7 @@
 #include <QRegularExpression>
 #include <QTextStream>
 
-namespace Breeze
+namespace BreezeSquare
 {
 
     SettingsProvider *SettingsProvider::s_self = nullptr;

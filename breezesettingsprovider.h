@@ -7,14 +7,14 @@
  */
 
 #include "breezedecoration.h"
-#include "breezesettings.h"
-#include "breeze.h"
+#include "breezeSquaresettings.h"
+#include "breezeSquare.h"
 
 #include <KSharedConfig>
 
 #include <QObject>
 
-namespace Breeze
+namespace BreezeSquare
 {
 
     class SettingsProvider: public QObject

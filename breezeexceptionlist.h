@@ -11,12 +11,12 @@
 // SPDX-License-Identifier: MIT
 //////////////////////////////////////////////////////////////////////////////
 
-#include "breezesettings.h"
-#include "breeze.h"
+#include "breezeSquaresettings.h"
+#include "breezeSquare.h"
 
 #include <KSharedConfig>
 
-namespace Breeze
+namespace BreezeSquare
 {
 
     //! breeze exceptions list

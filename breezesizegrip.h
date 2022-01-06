@@ -19,7 +19,7 @@
 #include <xcb/xcb.h>
 #endif
 
-namespace Breeze
+namespace BreezeSquare
 {
 
     //* implements size grip for all widgets

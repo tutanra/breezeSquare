@@ -16,7 +16,7 @@
 
 #include <algorithm>
 
-namespace Breeze
+namespace BreezeSquare
 {
     //! Job model. Stores job information for display in lists
     template<class T> class ListModel : public ItemModel

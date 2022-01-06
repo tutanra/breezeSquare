@@ -13,7 +13,7 @@
 #include "breezeexceptionmodel.h"
 
 //* QDialog used to commit selected files
-namespace Breeze
+namespace BreezeSquare
 {
 
     class ExceptionListWidget: public QWidget

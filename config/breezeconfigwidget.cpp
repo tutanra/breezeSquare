@@ -15,7 +15,7 @@
 #include <QDBusConnection>
 #include <QDBusMessage>
 
-namespace Breeze
+namespace BreezeSquare
 {
 
     //_________________________________________________________

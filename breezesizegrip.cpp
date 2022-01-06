@@ -17,7 +17,7 @@
 #include <QX11Info>
 #endif
 
-namespace Breeze
+namespace BreezeSquare
 {
 
     //* scoped pointer convenience typedef
@@ -104,7 +104,7 @@ namespace Breeze
 
             // reparent
             xcb_reparent_window( connection, winId(), current, 0, 0 );
-            setWindowTitle( "Breeze::SizeGrip" );
+            setWindowTitle( "BreezeSquare::SizeGrip" );
 
         } else {
 

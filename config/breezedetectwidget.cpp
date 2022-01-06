@@ -13,7 +13,7 @@
 
 #include "breezedetectwidget.h"
 
-#include "breeze.h"
+#include "breezeSquare.h"
 
 #include <KWindowInfo>
 
@@ -25,7 +25,7 @@
 #include <xcb/xcb.h>
 #endif
 
-namespace Breeze
+namespace BreezeSquare
 {
 
     //_________________________________________________________
