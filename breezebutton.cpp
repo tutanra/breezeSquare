@@ -480,11 +480,7 @@ namespace BreezeSquare
         {
             return c->isActive() ? redColor : d->fontColor();
         }
-        else if (d->internalSettings()->outlineCloseButton() && type() == DecorationButtonType::Maximize)
-        {
-            return greyColor;
-        }
-        else if (d->internalSettings()->outlineCloseButton() && type() == DecorationButtonType::Minimize)
+        else if (d->internalSettings()->outlineCloseButton() && (type() == DecorationButtonType::Maximize || type() == DecorationButtonType::Minimize))
         {
             return greyColor;
         }
