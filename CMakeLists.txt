@@ -1,4 +1,27 @@
+project(breezeSquare)
+set(PROJECT_VERSION "5.12.80")
+set(PROJECT_VERSION_MAJOR 5)
+
+cmake_minimum_required(VERSION 2.8.12 FATAL_ERROR)
+
+include(WriteBasicConfigVersionFile)
+include(FeatureSummary)
+
+  find_package(ECM 0.0.9 REQUIRED NO_MODULE)
+  set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${ECM_KDE_MODULE_DIR} ${CMAKE_SOURCE_DIR}/cmake)
+
+  include(ECMInstallIcons)
+  include(KDEInstallDirs)
+  include(KDECMakeSettings)
+  include(KDECompilerSettings NO_POLICY_SCOPE)
+  include(GenerateExportHeader)
+ 
+find_package(KDecoration2 REQUIRED)
+
 add_definitions(-DTRANSLATION_DOMAIN="breeze_kwin_deco")
+
+#find_package(KF5 REQUIRED COMPONENTS CoreAddons GuiAddons ConfigWidgets WindowSystem I18n)
+#find_package(Qt5 CONFIG REQUIRED COMPONENTS DBus)
 
 find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS CoreAddons GuiAddons ConfigWidgets WindowSystem I18n IconThemes)
 find_package(Qt5 ${QT_MIN_VERSION} CONFIG REQUIRED COMPONENTS DBus)
@@ -24,6 +47,8 @@ else()
   set(BREEZE_HAVE_X11 FALSE)
 
 endif()
+
+add_subdirectory(libbreezecommon)
 
 ################# configuration #################
 configure_file(config-breeze.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-breeze.h )
