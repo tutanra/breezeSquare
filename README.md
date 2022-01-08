@@ -10,7 +10,7 @@ Fork of breeze decoration from KDE project with Square border and some Colors wh
 
 In Ubuntu is recommended to have this modules to compile:
 ```sh
-sudo apt install build-essential libkf5config-dev libkdecorations2-dev libqt5x11extras5-dev qtdeclarative5-dev extra-cmake-modules libkf5guiaddons-dev libkf5configwidgets-dev libkf5windowsystem-dev libkf5coreaddons-dev gettext
+sudo apt install build-essential libkf5config-dev libkdecorations2-dev libqt5x11extras5-dev qtdeclarative5-dev extra-cmake-modules libkf5guiaddons-dev libkf5configwidgets-dev libkf5windowsystem-dev libkf5coreaddons-dev gettext libkf5style-dev
 ```
 
 Open a terminal inside the source directory and do:
