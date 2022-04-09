@@ -24,15 +24,14 @@ namespace BreezeSquare
 {
 
     //_____________________________________________
-    class ConfigWidget: public KCModule
+    class ConfigWidget : public KCModule
     {
 
         Q_OBJECT
 
-        public:
-
+    public:
         //* constructor
-        explicit ConfigWidget( QWidget*, const QVariantList& );
+        explicit ConfigWidget(QWidget *, const QVariantList &);
 
         //* destructor
         virtual ~ConfigWidget() = default;
@@ -46,18 +45,16 @@ namespace BreezeSquare
         //* save configuration
         void save() override;
 
-        protected Q_SLOTS:
+    protected Q_SLOTS:
 
         //* update changed state
         virtual void updateChanged();
 
-        protected:
-
+    protected:
         //* set changed state
-        void setChanged( bool );
+        void setChanged(bool);
 
-        private:
-
+    private:
         //* ui
         Ui_BreezeConfigurationUI m_ui;
 
@@ -69,7 +66,6 @@ namespace BreezeSquare
 
         //* changed state
         bool m_changed;
-
     };
 
 }
