@@ -10,6 +10,8 @@
 
 #include "breezeSquare.h"
 #include "breezeSquaresettings.h"
+#include "breezetextbutton.h"
+#include "breezeappmenubuttongroup.h"
 
 #include <KDecoration2/Decoration>
 #include <KDecoration2/DecoratedClient>
@@ -34,8 +36,7 @@ namespace BreezeSquare
     {
         Q_OBJECT
 
-        public:
-
+    public:
         //* constructor
         explicit Decoration(QObject *parent = nullptr, const QVariantList &args = QVariantList());
 
@@ -47,10 +48,14 @@ namespace BreezeSquare
 
         //* internal settings
         InternalSettingsPtr internalSettings() const
-        { return m_internalSettings; }
+        {
+            return m_internalSettings;
+        }
 
         qreal animationsDuration() const
-        { return m_animation->duration();}
+        {
+            return m_animation->duration();
+        }
 
         //* caption height
         int captionHeight() const;
@@ -60,17 +65,28 @@ namespace BreezeSquare
 
         //*@name active state change animation
         //@{
-        void setOpacity( qreal );
+        void setOpacity(qreal);
 
         qreal opacity() const
-        { return m_opacity; }
+        {
+            return m_opacity;
+        }
 
         //@}
+
+        qreal textWidth(const QString &text) const
+        {
+            QFontMetrics f(settings().data()->font());
+
+            return f.boundingRect(text).width();
+        };
 
         //*@name colors
         //@{
         QColor titleBarColor() const;
         QColor fontColor() const;
+        QColor outlineColor() const;
+
         //@}
 
         //*@name maximization modes
@@ -86,11 +102,11 @@ namespace BreezeSquare
 
         inline bool hideTitleBar() const;
         //@}
-
-        public Q_SLOTS:
+        QPoint windowPos() const;
+    public Q_SLOTS:
         void init() override;
 
-        private Q_SLOTS:
+    private Q_SLOTS:
         void reconfigure();
         void recalculateBorders();
         void updateButtonsGeometry();
@@ -99,17 +115,18 @@ namespace BreezeSquare
         void updateAnimationState();
         void updateSizeGripVisibility();
 
-        private:
-
+    private:
         //* return the rect in which caption will be drawn
-        QPair<QRect,Qt::Alignment> captionRect() const;
+        QPair<QRect, Qt::Alignment> captionRect() const;
+        QRect appMenuRect() const;
 
         void createButtons();
         void paintTitleBar(QPainter *painter, const QRect &repaintRegion);
         void updateShadow();
-        QSharedPointer<KDecoration2::DecorationShadow> createShadowObject( const float strengthScale );
+        QSharedPointer<KDecoration2::DecorationShadow> createShadowObject(const float strengthScale);
         void setScaledCornerRadius();
-        
+        AppMenuButtonGroup *m_menuButtons = nullptr;
+
         //*@name border size
         //@{
         int borderSize(bool bottom = false) const;
@@ -122,8 +139,10 @@ namespace BreezeSquare
         //@{
         void createSizeGrip();
         void deleteSizeGrip();
-        SizeGrip* sizeGrip() const
-        { return m_sizeGrip; }
+        SizeGrip *sizeGrip() const
+        {
+            return m_sizeGrip;
+        }
         //@}
 
         InternalSettingsPtr m_internalSettings;
@@ -141,64 +160,84 @@ namespace BreezeSquare
         qreal m_opacity = 0;
         qreal m_shadowOpacity = 0;
 
-        
         //*frame corner radius, scaled according to DPI
         qreal m_scaledCornerRadius = 3;
+
+        QMouseEvent *m_pressEvent = nullptr;
+
+    protected:
+        virtual void hoverMoveEvent(QHoverEvent *event) override;
+        virtual void mousePressEvent(QMouseEvent *event) override;
+        virtual void mouseReleaseEvent(QMouseEvent *event) override;
     };
 
     bool Decoration::hasBorders() const
     {
-        if( m_internalSettings && m_internalSettings->mask() & BorderSize ) return m_internalSettings->borderSize() > InternalSettings::BorderNoSides;
-        else return settings()->borderSize() > KDecoration2::BorderSize::NoSides;
+        if (m_internalSettings && m_internalSettings->mask() & BorderSize)
+            return m_internalSettings->borderSize() > InternalSettings::BorderNoSides;
+        else
+            return settings()->borderSize() > KDecoration2::BorderSize::NoSides;
     }
 
     bool Decoration::hasNoBorders() const
     {
-        if( m_internalSettings && m_internalSettings->mask() & BorderSize ) return m_internalSettings->borderSize() == InternalSettings::BorderNone;
-        else return settings()->borderSize() == KDecoration2::BorderSize::None;
+        if (m_internalSettings && m_internalSettings->mask() & BorderSize)
+            return m_internalSettings->borderSize() == InternalSettings::BorderNone;
+        else
+            return settings()->borderSize() == KDecoration2::BorderSize::None;
     }
 
     bool Decoration::hasNoSideBorders() const
     {
-        if( m_internalSettings && m_internalSettings->mask() & BorderSize ) return m_internalSettings->borderSize() == InternalSettings::BorderNoSides;
-        else return settings()->borderSize() == KDecoration2::BorderSize::NoSides;
+        if (m_internalSettings && m_internalSettings->mask() & BorderSize)
+            return m_internalSettings->borderSize() == InternalSettings::BorderNoSides;
+        else
+            return settings()->borderSize() == KDecoration2::BorderSize::NoSides;
     }
 
     bool Decoration::isMaximized() const
-    { return client().toStrongRef()->isMaximized() && !m_internalSettings->drawBorderOnMaximizedWindows(); }
+    {
+        return client().toStrongRef()->isMaximized() && !m_internalSettings->drawBorderOnMaximizedWindows();
+    }
 
     bool Decoration::isMaximizedHorizontally() const
-    { return client().toStrongRef()->isMaximizedHorizontally() && !m_internalSettings->drawBorderOnMaximizedWindows(); }
+    {
+        return client().toStrongRef()->isMaximizedHorizontally() && !m_internalSettings->drawBorderOnMaximizedWindows();
+    }
 
     bool Decoration::isMaximizedVertically() const
-    { return client().toStrongRef()->isMaximizedVertically() && !m_internalSettings->drawBorderOnMaximizedWindows(); }
+    {
+        return client().toStrongRef()->isMaximizedVertically() && !m_internalSettings->drawBorderOnMaximizedWindows();
+    }
 
     bool Decoration::isLeftEdge() const
     {
         const auto c = client().toStrongRef();
-        return (c->isMaximizedHorizontally() || c->adjacentScreenEdges().testFlag( Qt::LeftEdge ) ) && !m_internalSettings->drawBorderOnMaximizedWindows();
+        return (c->isMaximizedHorizontally() || c->adjacentScreenEdges().testFlag(Qt::LeftEdge)) && !m_internalSettings->drawBorderOnMaximizedWindows();
     }
 
     bool Decoration::isRightEdge() const
     {
         const auto c = client().toStrongRef();
-        return (c->isMaximizedHorizontally() || c->adjacentScreenEdges().testFlag( Qt::RightEdge ) ) && !m_internalSettings->drawBorderOnMaximizedWindows();
+        return (c->isMaximizedHorizontally() || c->adjacentScreenEdges().testFlag(Qt::RightEdge)) && !m_internalSettings->drawBorderOnMaximizedWindows();
     }
 
     bool Decoration::isTopEdge() const
     {
         const auto c = client().toStrongRef();
-        return (c->isMaximizedVertically() || c->adjacentScreenEdges().testFlag( Qt::TopEdge ) ) && !m_internalSettings->drawBorderOnMaximizedWindows();
+        return (c->isMaximizedVertically() || c->adjacentScreenEdges().testFlag(Qt::TopEdge)) && !m_internalSettings->drawBorderOnMaximizedWindows();
     }
 
     bool Decoration::isBottomEdge() const
     {
         const auto c = client().toStrongRef();
-        return (c->isMaximizedVertically() || c->adjacentScreenEdges().testFlag( Qt::BottomEdge ) ) && !m_internalSettings->drawBorderOnMaximizedWindows();
+        return (c->isMaximizedVertically() || c->adjacentScreenEdges().testFlag(Qt::BottomEdge)) && !m_internalSettings->drawBorderOnMaximizedWindows();
     }
 
     bool Decoration::hideTitleBar() const
-    { return m_internalSettings->hideTitleBar() && !client().toStrongRef()->isShaded(); }
+    {
+        return m_internalSettings->hideTitleBar() && !client().toStrongRef()->isShaded();
+    }
 
 }
 

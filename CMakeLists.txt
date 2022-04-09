@@ -65,7 +65,13 @@ set(breezedecoration_SRCS
     breezeexceptionlist.cpp
     breezesettingsprovider.cpp
     breezesizegrip.cpp
-    breezeboxshadowrenderer.cpp)
+    breezeboxshadowrenderer.cpp
+    breezetextbutton.cpp
+    breezeappmenubuttongroup.cpp
+    breezeappmenumodel.cpp
+    breezemenuoverflowbutton.cpp
+    
+)
 
 kconfig_add_kcfg_files(breezedecoration_SRCS breezeSquaresettings.kcfgc)
 
@@ -89,6 +95,9 @@ set(breezedecoration_config_PART_FORMS
 
 ki18n_wrap_ui(breezedecoration_config_PART_FORMS_HEADERS ${breezedecoration_config_PART_FORMS})
 
+include(ECMQtDeclareLoggingCategory)
+add_subdirectory(libdbusmenuqt)
+
 ### build library
 add_library(breezeSquaredecoration MODULE
     ${breezedecoration_SRCS}
@@ -101,6 +110,7 @@ target_link_libraries(breezeSquaredecoration
         Qt::Gui
         Qt::DBus
     PRIVATE
+        dbusmenuqt
         breezecommon5
         KDecoration2::KDecoration
         KF5::ConfigCore

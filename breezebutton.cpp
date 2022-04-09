@@ -97,6 +97,14 @@ namespace BreezeSquare
                 QObject::connect(c.data(), &KDecoration2::DecoratedClient::iconChanged, b, [b]()
                                  { b->update(); });
                 break;
+            case DecorationButtonType::ApplicationMenu:
+                QObject::connect(b, &Button::visibilityChanged, b, [d, b](bool visible)
+                                 {
+                        if(d->internalSettings()->enableLIM() && visible){
+                            b->setVisible(false);
+                        } });
+                b->setVisible(!d->internalSettings()->enableLIM());
+                break;
 
             default:
                 break;
@@ -186,7 +194,7 @@ namespace BreezeSquare
         {
             painter->setPen(Qt::NoPen);
             painter->setBrush(backgroundColor);
-            //painter->drawEllipse( QRectF( 0, 0, 18, 18 ) );
+            // painter->drawEllipse( QRectF( 0, 0, 18, 18 ) );
             painter->drawRoundedRect(QRectF(0, 0, 18, 18), 50.0, 50.0, Qt::RelativeSize);
         }
 
@@ -461,7 +469,7 @@ namespace BreezeSquare
                 color.setAlpha(color.alpha() * m_opacity);
                 return color;
             }
-        }  
+        }
         else if (isHovered())
         {
 
@@ -493,7 +501,11 @@ namespace BreezeSquare
     //________________________________________________________________
     void Button::reconfigure()
     {
-
+        if (type() == DecorationButtonType::ApplicationMenu)
+        {
+            auto d = qobject_cast<Decoration *>(decoration());
+            setVisible(!d->internalSettings()->enableLIM());
+        }
         // animation
         auto d = qobject_cast<Decoration *>(decoration());
         if (d)
