@@ -85,6 +85,8 @@ namespace BreezeSquare
         //@{
         QColor titleBarColor() const;
         QColor fontColor() const;
+        QColor outlineColor() const;
+
         //@}
 
         //*@name maximization modes
@@ -116,12 +118,14 @@ namespace BreezeSquare
     private:
         //* return the rect in which caption will be drawn
         QPair<QRect, Qt::Alignment> captionRect() const;
+        QRect appMenuRect() const;
 
         void createButtons();
         void paintTitleBar(QPainter *painter, const QRect &repaintRegion);
         void updateShadow();
         QSharedPointer<KDecoration2::DecorationShadow> createShadowObject(const float strengthScale);
         void setScaledCornerRadius();
+        AppMenuButtonGroup *m_menuButtons = nullptr;
 
         //*@name border size
         //@{
@@ -158,6 +162,13 @@ namespace BreezeSquare
 
         //*frame corner radius, scaled according to DPI
         qreal m_scaledCornerRadius = 3;
+
+        QMouseEvent *m_pressEvent = nullptr;
+
+    protected:
+        virtual void hoverMoveEvent(QHoverEvent *event) override;
+        virtual void mousePressEvent(QMouseEvent *event) override;
+        virtual void mouseReleaseEvent(QMouseEvent *event) override;
     };
 
     bool Decoration::hasBorders() const
